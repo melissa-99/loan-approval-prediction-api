@@ -1,0 +1,158 @@
+---
+title: "Loan Prediction"
+author: "Andy Melissa"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+# Loan Approval Prediction API
+
+## Project Overview
+
+This project builds a machine learning API for predicting loan approval decisions based on applicant information. It simulates a real-world lending scenario in which borrower characteristics are analyzed to determine whether a loan is likely to be approved or rejected.
+
+The project combines machine learning with API deployment using FastAPI, making it an end-to-end data science application.
+
+---
+
+## Objective
+
+The goal of this project is to:
+
+- preprocess loan application data
+- train a machine learning model for loan approval prediction
+- save the trained pipeline
+- deploy the model through a FastAPI application
+- allow users to test predictions through an interactive API interface
+
+---
+
+## Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Joblib
+- FastAPI
+- Uvicorn
+- Pydantic
+- Jupyter Notebook
+
+---
+
+## Dataset
+
+This project uses the Loan Prediction dataset available on Kaggle:
+
+🔗 https://www.kaggle.com/datasets/ninzaami/loan-predication
+
+The dataset includes borrower attributes such as income, loan amount, credit history, and employment status, which are used to predict loan approval decisions.
+
+Note: Due to file size constraints, the dataset is not included in this repository. Please download it from the link above and place it in the project directory before running the notebook.
+
+This project uses a loan prediction dataset containing applicant and loan information such as:
+
+- Gender
+- Married
+- Dependents
+- Education
+- Self_Employed
+- ApplicantIncome
+- CoapplicantIncome
+- LoanAmount
+- Loan_Amount_Term
+- Credit_History
+- Property_Area
+
+Target variable:
+
+- `Loan_Status`
+  - `Y` = Approved
+  - `N` = Rejected
+
+If the dataset is not included in this repository, download it from Kaggle and place it in the project folder before retraining the model.
+
+---
+
+## Project Workflow
+
+1. Load and clean the dataset
+2. Handle missing values
+3. Encode categorical variables using a preprocessing pipeline
+4. Train a machine learning model
+5. Save the full preprocessing + model pipeline
+6. Build a FastAPI application
+7. Test the model through the API documentation page
+
+---
+
+## API Endpoints
+
+### Home
+`GET /`
+
+Returns a simple message confirming that the API is running.
+
+### Prediction
+`POST /predict`
+
+Accepts loan applicant details and returns:
+
+- prediction (`Approved` or `Rejected`)
+- approval probability
+
+---
+
+## Example Input
+
+```json
+{
+  "Gender": "Male",
+  "Married": "Yes",
+  "Dependents": "0",
+  "Education": "Graduate",
+  "Self_Employed": "No",
+  "ApplicantIncome": 5000,
+  "CoapplicantIncome": 2000,
+  "LoanAmount": 150,
+  "Loan_Amount_Term": 360,
+  "Credit_History": 1,
+  "Property_Area": "Urban"
+}
+```
+##Interpretation 
+This will be accepted and prediction will be made accordingly 
+---
+
+## Example Input
+
+```json
+{
+  "Gender": "Male",
+  "Married": "No",
+  "Dependents": "2",
+  "Education": "Not Graduate",
+  "Self_Employed": "Yes",
+  "ApplicantIncome": 1500,
+  "CoapplicantIncome": 0,
+  "LoanAmount": 250,
+  "Loan_Amount_Term": 120,
+  "Credit_History": 0,
+  "Property_Area": "Rural"
+}
+```
+##Interpretation 
+This prediction will be rejected
+
+##Author
+
+Andy Melissa Nkou Mbida
+
+Aspiring Data Scientist interested in financial analytics, machine learning, and end-to-end intelligent systems.
